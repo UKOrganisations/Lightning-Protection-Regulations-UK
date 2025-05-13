@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lightning Protection Risk Checker</title>
+  <style>
+    body { font-family: sans-serif; max-width: 700px; margin: 2em auto; line-height: 1.6; }
+    label { display: block; margin-top: 1em; }
+    button { margin-top: 2em; padding: 0.5em 1em; }
+    .result { font-weight: bold; margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Lightning Protection Risk Checker (UK)</h1>
+
+  <form id="riskForm">
+    <label>
+      Is your building taller than 15 metres?
+      <select name="height">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </label>
+
+    <label>
+      Is it used by the public (e.g. school, hospital)?
+      <select name="public">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </label>
+
+    <label>
+      Is there critical or expensive equipment inside (e.g. servers, medical devices)?
+      <select name="equipment">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </label>
+
+    <label>
+      Have you had a lightning risk assessment done before?
+      <select name="assessment">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </label>
+
+    <button type="submit">Check Risk</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    const form = document.getElementById('riskForm');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const answers = [...data.values()];
+      const yesCount = answers.filter(a => a === 'yes').length;
+
+      if (yesCount >= 2) {
+        result.textContent = "⚠️ Your building likely requires a lightning protection system. A formal risk assessment is strongly recommended.";
+      } else {
+        result.textContent = "✅ Your risk appears low, but a professional assessment is the only way to be certain.";
+      }
+    });
+  </script>
+</body>
+</html>
