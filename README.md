@@ -88,9 +88,4 @@ A: Building owners, duty holders, and employers.
 **Q: How often should systems be tested?**  
 A: At least once a year or after major weather events.
 
----
-
-## 📎 Interactive Risk Checker (Beta)
-
-Use the interactive form below (available on GitHub Pages or via the `/index.html`) to estimate whether your building likely requires a lightning protection system.
 
